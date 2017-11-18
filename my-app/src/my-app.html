@@ -88,6 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="view1" href="[[rootPath]]view1">View One</a>
           <a name="view2" href="[[rootPath]]view2">View Two</a>
           <a name="view3" href="[[rootPath]]view3">View Three</a>
+          <a name="view3" href="[[rootPath]]login-view">Login</a>
         </iron-selector>
       </app-drawer>
 
@@ -109,6 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-view1 name="view1"></my-view1>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
+          <my-login-view name="login-view"></my-login-view> <!--Aqui se agrego este para la vista de log in-->
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -153,7 +155,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html'); //esta linea define como se resuelve la pagina por eso lleva el my
         Polymer.importHref(
             resolvedPageUrl,
             null,
