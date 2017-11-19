@@ -31,16 +31,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .item {
           border: 2px solid;
           border-radius:  10px;
-          height: 10vh;
-
+          height: 15vh;
+          padding: 0px 10px 10px 10px;
         }
       </style>
 <div class="card">
-      <p>texto [[data]]</p>
-      <iron-list items="{{items}}">
+      <p>texto </p>
+      <iron-list items="[[items]]">
         <template>
-          <div class="item">Divisa [[item.producto]]  $[[item.precio]]
-          <input name="[[]]">Comprar</input>
+          <div class="item">Divisa [[item.divisa]] $[[item.precio]]
+          <paper-button style="background:#999;" name="[[item.id]]">Comprar</paper-button>
           </div>
         </template>
       </iron-list>
@@ -50,34 +50,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
-
       static get properties()  {
         return {
           items: {
             type: Object,
-            value: function(){
-              Oferta.limitToLast(10).on('child_added', function(data){
-                console.log(data.val());
-      //$('#mensajes').append('<br>'+data.val().autor+": "+data.val().mensaje);
-       // esto es para el scrol vvv 
-        //var d = $('#chatt');
-       // d.scrollTop(d.prop("scrollHeight"));
-       return data;
-     });
-
-            }
-
-          }
+            value: [{"id":"3487","divisa":"DLS", "precio":20},{"id":"0967","divisa":"DLS", "precio":32},{"id":"3883","divisa":"DLS", "precio":17},{"id":"9473","divisa":"DLS", "precio":12}]
         }
       }
+    }
 
-      connectedCallback(){
-        Oferta.push({
-        Divisa: "this.creditCard",
-        precio: "this.date",
-        id: "this.cs"
-      });
-      }
+      
+      
       
     }
 

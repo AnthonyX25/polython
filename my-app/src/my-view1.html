@@ -35,7 +35,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </form>
 
       
-        <div id="container"></div>
+        <div id="card">
+          <iron-list items="{{items}}">
+        <template>
+          <div class="item">Divisa [[item.producto]]  $[[item.precio]]
+          <input name="[[]]">Comprar</input>
+          </div>
+        </template>
+      </iron-list></div>
      
 
     </iron-form>
