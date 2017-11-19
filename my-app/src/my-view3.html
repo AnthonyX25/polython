@@ -1,72 +1,38 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
+<<!-- Load the Polymer.Element base class -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
- 
-<firebase-app
-  auth-domain="my-app-b0a34.firebaseapp.com"
-  database-url="https://my-app-b0a34.firebaseio.com"
-  api-key="AIzaSyAg4Xz-0_zEQQRyT2RoKls9iTucXEOz4hU"
-  storage-bucket="my-app-b0a34.appspot.com"
-  messaging-sender-id="915186120344"
-  project-id="my-app-b0a34">
-</firebase-app>
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 
-<firebase-query
-    id="query"
-    app-name="my-app-b0a34"
-    path="/products"
-    data="{{data}}">
-</firebase-query>
 
 <dom-module id="my-view3">
+  <!-- Defines the element's style and local DOM -->
   <template>
-    <style include="shared-styles">
+    <style>
       :host {
         display: block;
 
-        padding: 10px;
+        padding: 16px;
       }
     </style>
-
-    <div class="card">
-      <div class="circle">{{data}}</div>
-      <h1>Aqui Seleccionabas alguna de tus tarjetas vinculadas</h1>
-      <p>Poco texto :)</p>
       
-    </div>
-   
+      <paper-toolbar><span slot="top" class="title">
+          Seleccione su forma de pago</span>
+      </paper-toolbar>
+      <p><paper-radio-button name="hola" checked>Tarjeta de credito</paper-radio-button></p>
+      <paper-radio-button name="hola">Tarjeta de debito</paper-radio-button>
+      
+      <p><paper-button raised class="indigo">Aceptar</paper-button><p>
+      
   </template>
-
   <script>
+    // Your new element extends the Polymer.Element base class
     class MyView3 extends Polymer.Element {
       static get is() { return 'my-view3'; }
-      static get properties(){
-        return {name : {type: String, value: "sad",
-        notify:true
-                }
-              }
-              
-
-      }
     }
-    function handleError(e){console.log(e);}
-
-    window.customElements.define(MyView3.is, MyView3);
-
-    // Set the configuration for your app
-  // TODO: Replace with your project's config object
- 
-
-  // Initialize Firebase
-  
+    //Now, register your new custom element so the browser can use it
+    customElements.define(MyView3.is, MyView3);
   </script>
 </dom-module>
+   
