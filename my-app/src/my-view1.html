@@ -75,8 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
          
-         Productos.limitToLast(10).on('child_added', function(data){})
-         console.log(data.val().csv);
+
       //console.log(data.val());
        //Polymer.dom(this.$.container).appendChild(autor);
         //d.scrollTop(d.prop("scrollHeight"));
@@ -84,7 +83,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
       connectedCallback() {
       super.connectedCallback();
-      
+      Productos.limitToLast(10).on('child_added', function(data){
+      console.log(data.val());
+      //$('#mensajes').append('<br>'+data.val().autor+": "+data.val().mensaje);
+       // esto es para el scrol vvv 
+        //var d = $('#chatt');
+       // d.scrollTop(d.prop("scrollHeight"));
+        
+    });
       // render
         //console.log(this.creditCard);
     }
