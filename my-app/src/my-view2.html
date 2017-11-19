@@ -9,13 +9,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<firebase-query
+    id="query"
+    app-name="my-app-b0a34"
+    path="/products"
+    data="{{data}}">
+</firebase-query>
 <dom-module id="my-view2">
   <template>
-    <style>
+    <style include="shared-styles">
         :host {
           display: block;
         }
@@ -25,31 +31,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         
         .item {
-          margin: auto;
-          border: 2px solid;
-          border-radius: 10px;
-          box-shadow: 10px 10px 10px #fff;
+          box-shadow: 10px 10px 10px #aaa;
+          border-radius:  10px;
           height: 10vh;
+
         }
       </style>
-
+<div class="card">
+      
       <iron-list items="[[items]]">
         <template>
-          <div class="item">Item [[index]]</div>
+          <div class="item">Divisa [[item.producto]]  <div class="circle">$[[item.precio]]</div>
+          <paper-button toggles raised class="green" data="[[item.id]]" onClick="this.profile.name = Alex;
+this.notifyPath('profile.name');">Comprar</paper-button>
+          </div>
         </template>
       </iron-list>
+    </div>
   </template>
 
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
+      
       static get properties()  {
         return {
           items: {
-            type: Array,
-          value: function(){
-            return [1,2,3]
-            }
+            type: Object,
+          value: [{"producto":"Dolar","precio":23.5, "id":777},{"producto":"Euro","precio":23.5, "id":3241},{"producto":"Libra","precio":23.5, "id":123},{"producto":"Dolar","precio":23.5, "id":1432}]
           }
         }
       }
