@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <iron-list items="[[items]]">
         <template>
-          <div class="item">Item [[item.name]]</div>
+          <div class="item">Item [[index]]</div>
         </template>
       </iron-list>
   </template>
@@ -43,23 +43,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
-    }
-
-    //window.customElements.define(MyView2.is, MyView2);
-
-     HTMLImports.whenReady(function() {
-      Polymer({
-        is: 'my-view2',
-        properties: {
+      static get properties()  {
+        return {
           items: {
             type: Array,
-            value: function() {
-              return [{name: "Item 1", prize: 1000}, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+          value: function(){
+            return [1,2,3]
             }
           }
         }
-      });
-    });
-     
+      }
+    }
+
+    window.customElements.define(MyView2.is, MyView2);
+
+    
   </script>
 </dom-module>
