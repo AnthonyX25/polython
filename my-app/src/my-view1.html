@@ -10,6 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
 
 <dom-module id="my-view1">
   <template>
@@ -22,19 +24,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h3>Registro de tarjetas</h3>
+          <iron-form>
+      <form method="get" action="/form/handler">
+        <input type="text" placeholder="Numero de tarjeta" name="credit-card" value="{{creditCard::input}}">
+        <input type="text" placeholder="Fecha de Vencimiento" name="date" value="{{date::input}}">
+        <input type="password" placeholder="Codigo de seguridad" name="csv" value="{{csv::input}}">
+        <paper-checkbox name="cheese" value="yes" checked></paper-checkbox>
+        <paper-button raised on-click="submitForm">Submit</paper-button>
+      </form>
+
+      
+        <div id="container"></div>
+     
+
+    </iron-form>
     </div>
   </template>
 
   <script>
+     
+
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
-    }
+      static get properties(){
+        return {
+          creditCard:{
+            type: String,
+            value:null
 
+          },
+          date:{
+            type: String,
+            value: null
+          },
+          csv:{
+            type: String,
+            value:null
+          }
+        }
+      }
+       submitForm(evt) {
+        evt.preventDefault();
+        //debugger;
+      console.log(this.creditCard);
+      Productos.push({
+        creditCard: this.creditCard,
+        date: this.date,
+        csv: this.csv
+      });
+
+         
+         Productos.limitToLast(10).on('child_added', function(data){})
+         console.log(data.val().csv);
+      //console.log(data.val());
+       //Polymer.dom(this.$.container).appendChild(autor);
+        //d.scrollTop(d.prop("scrollHeight"));
+        
+    }
+      connectedCallback() {
+      super.connectedCallback();
+      
+      // render
+        //console.log(this.creditCard);
+    }
+    }
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>

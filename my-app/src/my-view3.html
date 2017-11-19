@@ -10,6 +10,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+ 
+<firebase-app
+  auth-domain="my-app-b0a34.firebaseapp.com"
+  database-url="https://my-app-b0a34.firebaseio.com"
+  api-key="AIzaSyAg4Xz-0_zEQQRyT2RoKls9iTucXEOz4hU"
+  storage-bucket="my-app-b0a34.appspot.com"
+  messaging-sender-id="915186120344"
+  project-id="my-app-b0a34">
+</firebase-app>
+
+<firebase-query
+    id="query"
+    app-name="my-app-b0a34"
+    path="/products"
+    data="{{data}}">
+</firebase-query>
 
 <dom-module id="my-view3">
   <template>
@@ -22,18 +38,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">3</div>
-      <h1>View Three</h1>
+      <div class="circle">{{data}}</div>
+      <h1>{{data}}</h1>
       <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
     </div>
+   
   </template>
 
   <script>
     class MyView3 extends Polymer.Element {
       static get is() { return 'my-view3'; }
+      static get properties(){
+        return {name : {type: String, value: "sad",
+        notify:true
+                }
+              }
+              
+
+      }
     }
+    function handleError(e){console.log(e);}
 
     window.customElements.define(MyView3.is, MyView3);
+
+    // Set the configuration for your app
+  // TODO: Replace with your project's config object
+ 
+
+  // Initialize Firebase
+  
   </script>
 </dom-module>

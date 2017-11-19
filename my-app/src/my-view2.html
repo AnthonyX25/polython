@@ -13,12 +13,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<firebase-query
-    id="query"
-    app-name="my-app-b0a34"
-    path="/products"
-    data="{{data}}">
-</firebase-query>
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
+
+
 <dom-module id="my-view2">
   <template>
     <style include="shared-styles">
@@ -38,12 +36,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       </style>
 <div class="card">
-      
-      <iron-list items="[[items]]">
+      <p>texto [[data]]</p>
+      <iron-list items="{{items}}">
         <template>
-          <div class="item">Divisa [[item.producto]]  <div class="circle">$[[item.precio]]</div>
-          <paper-button toggles raised class="green" data="[[item.id]]" onClick="this.profile.name = Alex;
-this.notifyPath('profile.name');">Comprar</paper-button>
+          <div class="item">Divisa [[item.producto]]  $[[item.precio]]
+          <paper-button toggles raised class="green" active="[[item.id]]">Comprar</paper-button>
           </div>
         </template>
       </iron-list>
@@ -53,12 +50,14 @@ this.notifyPath('profile.name');">Comprar</paper-button>
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
-      
+
       static get properties()  {
         return {
           items: {
             type: Object,
-          value: [{"producto":"Dolar","precio":23.5, "id":777},{"producto":"Euro","precio":23.5, "id":3241},{"producto":"Libra","precio":23.5, "id":123},{"producto":"Dolar","precio":23.5, "id":1432}]
+          value: [{"producto":"Dolar","precio":23.5, "id":777},{"producto":"Euro","precio":23.5, "id":3241},{"producto":"Libra","precio":23.5, "id":123},{"producto":"Dolar","precio":23.5, "id":1432}],
+                    notify: true
+
           }
         }
       }
@@ -66,6 +65,7 @@ this.notifyPath('profile.name');">Comprar</paper-button>
 
     window.customElements.define(MyView2.is, MyView2);
 
+  
     
   </script>
 </dom-module>
