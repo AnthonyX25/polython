@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iron-list items="{{items}}">
         <template>
           <div class="item">Divisa [[item.producto]]  $[[item.precio]]
-          <paper-button toggles raised class="green" active="[[item.id]]">Comprar</paper-button>
+          <input name="[[]]">Comprar</input>
           </div>
         </template>
       </iron-list>
@@ -55,12 +55,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           items: {
             type: Object,
-          value: [{"producto":"Dolar","precio":23.5, "id":777},{"producto":"Euro","precio":23.5, "id":3241},{"producto":"Libra","precio":23.5, "id":123},{"producto":"Dolar","precio":23.5, "id":1432}],
-                    notify: true
+            value: function(){
+              Oferta.limitToLast(10).on('child_added', function(data){
+                console.log(data.val());
+      //$('#mensajes').append('<br>'+data.val().autor+": "+data.val().mensaje);
+       // esto es para el scrol vvv 
+        //var d = $('#chatt');
+       // d.scrollTop(d.prop("scrollHeight"));
+       return data;
+     });
+
+            }
 
           }
         }
       }
+
+      connectedCallback(){
+        Oferta.push({
+        Divisa: "this.creditCard",
+        precio: "this.date",
+        id: "this.cs"
+      });
+      }
+      
     }
 
     window.customElements.define(MyView2.is, MyView2);
