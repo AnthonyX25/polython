@@ -40,7 +40,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iron-list items="[[items]]">
         <template>
           <div class="item">Divisa [[item.divisa]] $[[item.precio]]
-          <paper-button style="background:#999;" name="[[item.id]]">Comprar</paper-button>
+          <input type="number" placeholder="Cantidad" value="[[cantidad]]">
+          <paper-button style="background:#999;" on-click="buyButton" name="[[item.id]]">Comprar</paper-button>
           </div>
         </template>
       </iron-list>
@@ -55,16 +56,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           items: {
             type: Object,
             value: [{"id":"3487","divisa":"DLS", "precio":20},{"id":"0967","divisa":"DLS", "precio":32},{"id":"3883","divisa":"DLS", "precio":17},{"id":"9473","divisa":"DLS", "precio":12}]
+        },
+        cantidad :{
+          type: Number,
+          value:null
         }
       }
     }
-
-      
-      
+    buyButton(){
+      Oferta.push(this.items, this.cantidad);
       
     }
 
-    window.customElements.define(MyView2.is, MyView2);
+   
+    }
+     window.customElements.define(MyView2.is, MyView2);
 
   
     
